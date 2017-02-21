@@ -7,7 +7,7 @@ const defaults = {
     'server': 'irc.server.com',
     'nick': 'doggie',
     'channels': ['dogs']
-}
+};
 const config = Object.assign({}, defaults, require(configFile));
 
 var client = new irc.Client(config.server, config.nick, {
