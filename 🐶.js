@@ -4,9 +4,9 @@ const irc = require('irc');
 const programName = 'dogbot';
 const configFile = `${xdg.config}/${programName}/config.json`
 const defaults = {
-	'server': 'irc.server.com',
-	'nick': 'doggie',
-	'channels': ['dogs']
+    'server': 'irc.server.com',
+    'nick': 'doggie',
+    'channels': ['dogs']
 }
 const config = Object.assign({}, defaults, require(configFile));
 
