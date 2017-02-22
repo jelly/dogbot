@@ -9,7 +9,7 @@
   "author": "Jelle van der Waa",
   "license": "MIT",
   "devDependencies": {
-    "irc": "^0.5.2",
+    "irc": "https://github.com/chee/node-irc.git",
     "xdg-basedir": "^3.0.0"
   }
 }
