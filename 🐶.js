@@ -16,11 +16,8 @@ var client = new irc.Client(config.server, config.nick, {
 
 client.addListener('message', function (from, to, message) {
     console.log(from + ' => ' + to + ': ' + message);
-    if (message.startsWith('dogbot')) {
-            client.say(to, '🐶');
-    } else if (message.includes('dog')) {
-            client.say(to, '🐶');
-    }
+    const match = message.match(/dog/g);
+    match && client.say(to, match.map(() => { return '🐶'; }).join(' '));
 });
 
 client.addListener('error', function(message) {
