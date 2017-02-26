@@ -10,14 +10,14 @@ const defaults = {
 };
 const config = Object.assign({}, defaults, require(configFile));
 
-var client = new irc.Client(config.server, config.nick, {
+const client = new irc.Client(config.server, config.nick, {
     channels: config.channels,
 });
 
 client.addListener('message', function (from, to, message) {
     console.log(from + ' => ' + to + ': ' + message);
     const match = message.match(/dog/g);
-    match && client.say(to, match.map(() => { return '🐶'; }).join(' '));
+    match && client.say(to, match.map(() => '🐶').join(' '));
 });
 
 client.addListener('error', function(message) {
