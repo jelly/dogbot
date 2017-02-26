@@ -25,7 +25,7 @@ client.addListener('error', function(message) {
 });
 
 process.on('SIGTERM', (code) => {
-  config.channels.every((channel) => {
+  config.channels.every(channel => {
     client.action(channel, 'wanders off looking for dogsnacks');
   });
   process.exit();
