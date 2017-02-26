@@ -23,3 +23,10 @@ client.addListener('message', function (from, to, message) {
 client.addListener('error', function(message) {
     console.log('error: ', message);
 });
+
+process.on('SIGTERM', (code) => {
+  config.channels.every((channel) => {
+    client.action(channel, 'wanders off looking for dogsnacks');
+  });
+  process.exit();
+});
