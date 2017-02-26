@@ -16,7 +16,7 @@ const client = new irc.Client(config.server, config.nick, {
 
 client.addListener('message', function (from, to, message) {
     console.log(from + ' => ' + to + ': ' + message);
-    const match = message.match(/dog/g);
+    const match = message.match(/do+g/gi);
     match && client.say(to, match.map(() => '🐶').join(' '));
 });
 
