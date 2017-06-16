@@ -28,7 +28,7 @@ client.addListener('error', function(message) {
     console.log('error: ', message);
 });
 
-process.on('SIGTERM', (code) => {
+process.on('SIGTERM', () => {
   config.channels.every(channel => {
     client.action(channel, 'wanders off looking for dogsnacks');
   });
