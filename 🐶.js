@@ -18,7 +18,7 @@ client.addListener('message', function (from, to, message) {
     console.log(from + ' => ' + to + ': ' + message);
     const match = message.match(/do+g/gi);
     match && client.say(to, match.map(() => '🐶').join(' '));
-    message.includes('🐈') && client.action(to, '🐕 woof woof!');
+    message.includes('🐈') && client.action(to, '🐕 bork bork!');
 });
 
 client.addListener('error', function(message) {
