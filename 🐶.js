@@ -21,8 +21,16 @@ const handleMessage = (from, to, message) => {
   message.includes('🐈') && client.action(to, '🐕 woof woof!');
 };
 
+const handleNotice = (from, to, message) => {
+  console.log(from + ' => ' + to + ': ' + message);
+  const match = message.match(/do+g/gi);
+  match && client.notice(to, match.map(() => '🐶').join(' '));
+  message.includes('🐈') && client.action(to, '🐕 bork bork!');
+};
+
 client.addListener('message', handleMessage);
 client.addListener('action', handleMessage);
+client.addListener('notice', handleNotice);
 
 client.addListener('error', function(message) {
     console.log('error: ', message);
