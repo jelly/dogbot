@@ -14,12 +14,15 @@ const client = new irc.Client(config.server, config.nick, {
     channels: config.channels,
 });
 
-client.addListener('message', function (from, to, message) {
-    console.log(from + ' => ' + to + ': ' + message);
-    const match = message.match(/do+g/gi);
-    match && client.say(to, match.map(() => '🐶').join(' '));
-    message.includes('🐈') && client.action(to, '🐕 woof woof!');
-});
+const handleMessage = (from, to, message) => {
+  console.log(from + ' => ' + to + ': ' + message);
+  const match = message.match(/do+g/gi);
+  match && client.say(to, match.map(() => '🐶').join(' '));
+  message.includes('🐈') && client.action(to, '🐕 woof woof!');
+};
+
+client.addListener('message', handleMessage);
+client.addListener('action', handleMessage);
 
 client.addListener('error', function(message) {
     console.log('error: ', message);
