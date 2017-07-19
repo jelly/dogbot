@@ -6,6 +6,7 @@ const configFile = `${xdg.config}/${programName}/config.json`
 const defaults = {
     'server': 'irc.server.com',
     'nick': 'doggie',
+    'owner': 'cat',
     'channels': ['dogs']
 };
 const config = Object.assign({}, defaults, require(configFile));
@@ -21,8 +22,25 @@ const handleMessage = (from, to, message) => {
   message.includes('🐈') && client.action(to, '🐕 woof woof!');
 };
 
+const handlePM = (nick, text, message) => {
+  if (nick !== config.owner) {
+    return;
+  }
+
+  if (text !== 'nick') {
+    return;
+  }
+
+  if (client.nick === config.nick) {
+    return;
+  }
+
+  client.send("NICK", config.nick);
+}
+
 client.addListener('message', handleMessage);
 client.addListener('action', handleMessage);
+client.addListener('pm', handlePM);
 
 client.addListener('error', function(message) {
     console.log('error: ', message);
