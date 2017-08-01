@@ -20,6 +20,7 @@ const handleMessage = (from, to, message) => {
   const match = message.match(/do+g/gi);
   match && client.say(to, match.map(() => '🐶').join(' '));
   message.includes('🐈') && client.action(to, '🐕 woof woof!');
+  message.includes('a bone') && client.action(to, '🐕 catches a bone');
 };
 
 const handlePM = (nick, text, message) => {
